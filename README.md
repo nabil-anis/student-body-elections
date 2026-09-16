@@ -6,7 +6,7 @@ Welcome to the **Student Body Elections 2026** platform. This is a highly sophis
 
 ## 🌟 Key Features
 
-- **Unbiased Candidate Profiles:** Completely factual and non-exaggerated candidate profiles, including the God-Tier aura of Muhammad Sarib Naeem (Basically already won) and the Oratorical Supremacy of Muhammad Nabil.
+- **Unbiased Candidate Profiles:** Completely factual and non-exaggerated candidate profiles, including the Legendary aura of Muhammad Sarib Naeem (Basically already won) and the Oratorical Supremacy of Muhammad Nabil.
 - **Advanced "Discourage" Algorithm:** A state-of-the-art intercept system that actively prevents users from ruining their GPA or the university's future by voting for sub-optimal candidates (e.g., Minhaj, Waniza, Hamna).
 - **Hyper-Inclusive Onboarding:** Features an industry-leading 24-option gender selection modal, covering everything from "Batman" to "Sentient Artificial Intelligence - Identifies as Female".
 - **Auditory Feedback:** Integrated sound effects to reward correct democratic choices (romantic violin) and punish terrible ones.
