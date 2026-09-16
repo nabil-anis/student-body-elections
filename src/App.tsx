@@ -13,7 +13,6 @@ export default function App() {
   const [currentScreen, setCurrentScreen] = useState<ScreenId>('landing');
   const [history, setHistory] = useState<ScreenId[]>(['landing']);
   const [theme, setTheme] = useState<Theme>(null);
-  const [musicOn, setMusicOn] = useState(false);
 
   const [selectedSociety, setSelectedSociety] = useState<Society | null>(null);
   const [selectedPosition, setSelectedPosition] = useState<any | null>(null);
@@ -113,20 +112,16 @@ export default function App() {
     navigate('processing');
     setTimeout(() => {
       setWastedContent(CONFIG.wastedSequence[0]);
-      if (musicOn) {
-        const audio = new Audio('/assets/gay.mpeg');
-        audio.play().catch(() => {});
-      }
+      const audio = new Audio('/assets/gay.mpeg');
+      audio.play().catch(() => {});
       navigate('wasted', true);
     }, 1100);
   };
 
   const handleVoteSuccess = () => {
     setCelebrateSubtext(CONFIG.celebrateLines[Math.floor(Math.random() * CONFIG.celebrateLines.length)]);
-    if (musicOn) {
-      const audio = new Audio('/assets/violin.mpeg');
-      audio.play().catch(() => {});
-    }
+    const audio = new Audio('/assets/violin.mpeg');
+    audio.play().catch(() => {});
     navigate('celebrate');
   };
 
@@ -160,8 +155,6 @@ export default function App() {
       <TopBar
         currentScreen={currentScreen}
         onBack={handleBack}
-        musicOn={musicOn}
-        onToggleMusic={() => setMusicOn(!musicOn)}
       />
 
       <main className="flex flex-col flex-1 relative">

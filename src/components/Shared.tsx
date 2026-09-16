@@ -1,16 +1,14 @@
 import React, { useEffect, useRef } from 'react';
-import { ChevronLeft, Music } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
 import { ScreenId } from '../types';
 import { AnimatePresence, motion } from 'motion/react';
 
 interface TopBarProps {
   currentScreen: ScreenId;
   onBack: () => void;
-  musicOn: boolean;
-  onToggleMusic: () => void;
 }
 
-export function TopBar({ currentScreen, onBack, musicOn, onToggleMusic }: TopBarProps) {
+export function TopBar({ currentScreen, onBack }: TopBarProps) {
   const showTopBar = ['hub', 'positions', 'candidates'].includes(currentScreen);
 
   if (!showTopBar) return null;
@@ -23,15 +21,6 @@ export function TopBar({ currentScreen, onBack, musicOn, onToggleMusic }: TopBar
       >
         <ChevronLeft size={16} strokeWidth={3} />
         Back
-      </button>
-      <button
-        onClick={onToggleMusic}
-        className={`flex items-center gap-2 bg-surface border border-line rounded-full py-[7px] pr-[14px] pl-[10px] cursor-pointer shadow-sm text-[13px] font-semibold transition-colors active:scale-95 ${
-          musicOn ? 'text-accent' : 'text-ink-soft'
-        }`}
-      >
-        <Music size={16} strokeWidth={2.5} />
-        <span>Music: {musicOn ? 'On' : 'Off'}</span>
       </button>
     </div>
   );
