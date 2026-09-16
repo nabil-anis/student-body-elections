@@ -114,7 +114,7 @@ export default function App() {
     setTimeout(() => {
       setWastedContent(CONFIG.wastedSequence[0]);
       if (musicOn) {
-        const audio = new Audio('/assets/bruh.mp3');
+        const audio = new Audio('/assets/gay.mpeg');
         audio.play().catch(() => {});
       }
       navigate('wasted', true);
@@ -124,7 +124,7 @@ export default function App() {
   const handleVoteSuccess = () => {
     setCelebrateSubtext(CONFIG.celebrateLines[Math.floor(Math.random() * CONFIG.celebrateLines.length)]);
     if (musicOn) {
-      const audio = new Audio('/assets/sad_violin.mp3');
+      const audio = new Audio('/assets/violin.mpeg');
       audio.play().catch(() => {});
     }
     navigate('celebrate');
