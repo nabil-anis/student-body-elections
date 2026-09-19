@@ -30,8 +30,8 @@ export const EXTENDED_GENDERS = [
 export const CONFIG = {
   societies: [
     { id: "student-council", name: "Student Council", available: true },
-    { id: "event-society", name: "Event Society", available: false },
-    { id: "marketing-media", name: "Marketing and Media", available: false },
+    { id: "event-society", name: "Event Society", available: true },
+    { id: "marketing-media", name: "Marketing and Media", available: true },
     { id: "character-building", name: "Character Building Society", available: false },
     { id: "public-speaking", name: "Public Speaking Society", available: true },
     { id: "arts-literature", name: "Arts and Literature Society", available: false },
@@ -40,15 +40,22 @@ export const CONFIG = {
   positions: {
     "student-council": [
       { id: "president", name: "President", available: true },
-      { id: "vp", name: "Vice President", available: false },
-      { id: "gensec", name: "General Secretary", available: false },
+      { id: "vp", name: "Vice President", available: true },
+      { id: "gensec", name: "General Secretary", available: true },
+      { id: "treasurer", name: "Treasurer", available: true },
     ] as Position[],
     "public-speaking": [
-      { id: "president", name: "President", available: false },
+      { id: "president", name: "President", available: true },
       { id: "vp", name: "Vice President", available: true },
-      { id: "gensec", name: "General Secretary", available: false },
-      { id: "treasurer", name: "Treasurer", available: false },
+      { id: "gensec", name: "General Secretary", available: true },
+      { id: "treasurer", name: "Treasurer", available: true },
       { id: "sec-planning", name: "Secretary - Planning and Operations", available: false },
+    ] as Position[],
+    "marketing-media": [
+      { id: "president", name: "President", available: true },
+    ] as Position[],
+    "event-society": [
+      { id: "president", name: "President", available: true },
     ] as Position[]
   },
 
@@ -67,11 +74,20 @@ export const CONFIG = {
 
   candidates: {
     nabil:  { name: "Nabil", discourage: false },
-    nawaz:  { name: "Nawaz", discourage: true, discourageMsg: "He recently tried to swipe left on a physical billboard. Reading his bio might actively lower your GPA. Proceed?" },
-    waniza: { name: "Waniza", discourage: true, discourageMsg: "Her greatest achievement is managing to breathe without instructions. Do we really need to read her bio?" },
     sarib: { name: "Sarib", discourage: false },
-    minhaj: { name: "Minhaj", discourage: true, discourageMsg: "He once got lost in a straight hallway. Are you sure you want him leading the student body?" },
-    hamna: { name: "Hamna", discourage: true, discourageMsg: "Her campaign promises include 'more vibes' and 'less thinking'. Let's not encourage this. Proceed?" }
+    usaid: { name: "Usaid", discourage: false },
+    fatima: { name: "Fatima", discourage: false },
+    sabeen: { name: "Sabeen", discourage: false },
+    rumaisa: { name: "Rumaisa", discourage: false },
+    shafaq: { name: "Shafaq", discourage: false },
+    anish: { name: "Anish", discourage: false },
+    bakhtawar: { name: "Bakhtawar", discourage: false },
+    zaki: { name: "Zaki", discourage: false },
+    amna: { name: "Amna", discourage: false },
+    ashba: { name: "Ashba", discourage: false },
+    mohsin: { name: "Mohsin", discourage: false },
+    candidate1: { name: "Candidate 1", discourage: true, discourageMsg: "Candidate 1's main campaign promise is a 5% increase in generic enthusiasm. Do you really want to settle for mediocrity?" },
+    candidate2: { name: "Candidate 2", discourage: true, discourageMsg: "Candidate 2 once submitted a blank sheet of paper as a manifesto. Proceeding will lower the bar for everyone." }
   },
 
   wastedSequence: [

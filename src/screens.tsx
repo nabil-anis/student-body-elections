@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Button } from './components/Shared';
 import { CONFIG } from './data';
 import { Society } from './types';
-import { Check, Mic, Globe, Trophy, Users, Loader2, XCircle, AlertCircle } from 'lucide-react';
+import { Check, Mic, Globe, Trophy, Users, Loader2, XCircle, AlertCircle, Quote } from 'lucide-react';
 
 const ScreenWrapper = ({ children }: { children: React.ReactNode }) => (
   <motion.div
@@ -22,7 +22,6 @@ export const LandingScreen = ({ onStart }: { onStart: () => void }) => (
     <div className="flex flex-col justify-between h-full pt-[34px]">
       <div>
         <div className="flex items-center gap-[11px] h-[38px]">
-          {/* Add your logo src here later */}
           <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/SHU_LOGO.jpg" alt="SHU Logo" className="h-[30px] object-contain rounded" />
         </div>
 
@@ -147,7 +146,7 @@ export const PositionsScreen = ({ society, onSelectPosition, onLocked }: any) =>
               <div>
                 <div className="text-[16px] font-semibold leading-tight">{pos.name}</div>
                 <div className="text-[12.5px] text-ink-faint mt-1">
-                  {pos.available ? '3 candidates' : 'Not currently active'}
+                  {pos.available ? 'Candidates Available' : 'Not currently active'}
                 </div>
               </div>
             </div>
@@ -194,7 +193,104 @@ const FlipCard = ({ isFlipped, front, back, className = '' }: any) => (
   </div>
 );
 
-import { AnimatePresence } from 'motion/react';
+// Generic card generator
+const GenericCandidate = ({ candidateId, name, positionName, quote, traits, isFlipped, onFlip, onVote }: any) => (
+  <div className="flex flex-col gap-3">
+    <span className="ml-5 text-[11px] text-ink-faint font-semibold bg-surface border border-line px-2.5 py-1 rounded-full self-start">
+      Also running, technically
+    </span>
+    <FlipCard
+      className="h-[392px]"
+      isFlipped={isFlipped}
+      front={
+        <div className="flex flex-col items-center justify-center p-[24px_20px] w-full h-full bg-background rounded-[26px]">
+          <div className="w-[76px] h-[76px] rounded-full mb-3.5 bg-background border-[1.5px] border-line p-2 text-ink shrink-0">
+            <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="16" r="9" stroke="currentColor" strokeWidth="2.4"/><path d="M14 52 C14 34 18 28 30 28 C42 28 46 34 46 52" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"/><path d="M21 9c2-3 16-3 18 0" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"/><circle cx="30" cy="5" r="2" fill="currentColor"/></svg>
+          </div>
+          <div className="text-[20px] font-extrabold tracking-tight text-ink-soft uppercase">{name}</div>
+          <div className="text-[13.5px] text-ink-soft mt-1">Candidate for {positionName}</div>
+          <div className="mt-3.5 text-[13.5px] italic text-ink bg-background border border-line rounded-[14px] p-[12px_14px] leading-[1.5]">
+            "{quote}"
+          </div>
+        </div>
+      }
+      back={
+        <div className="flex flex-col w-full h-full text-left">
+          <div className="flex flex-col gap-3 w-full">
+            {traits.map((t: any, i: number) => (
+              <BioItem key={i} icon={t.icon} title={t.title} desc={t.desc} />
+            ))}
+          </div>
+        </div>
+      }
+    />
+    <div className="flex flex-col gap-2">
+      <Button variant="ghost" onClick={onFlip}>
+        {isFlipped ? 'Hide Details' : 'Why ' + name + '?'}
+      </Button>
+      <Button className="bg-ink" onClick={onVote}>
+        Vote for {name}
+      </Button>
+    </div>
+  </div>
+);
+
+// Main featured candidate card generator
+const FeaturedCandidate = ({ candidateId, name, positionName, badgeText, imageSrc, idTag, quote, traits, isFlipped, onFlip, onVote, showAristotleHandler }: any) => (
+  <div className="relative">
+    {badgeText && (
+      <span className="absolute -top-[11px] left-5 z-10 bg-accent text-white text-[11.5px] font-bold tracking-[0.01em] px-[13px] py-1.5 rounded-full shadow-[0_6px_16px_color-mix(in_srgb,var(--color-accent)_45%,transparent)] -rotate-2">
+        {badgeText}
+      </span>
+    )}
+    <FlipCard
+      className="h-[452px]"
+      isFlipped={isFlipped}
+      front={
+        <div className="w-full h-full relative border-[1.5px] border-accent rounded-[26px] overflow-hidden shadow-[0_0_0_5px_var(--color-accent-soft),var(--shadow-lg)] bg-black">
+          {imageSrc ? (
+            <img src={imageSrc} alt={name} className={`w-full h-full object-cover ${candidateId === 'sarib' ? 'opacity-80 grayscale mix-blend-luminosity' : 'opacity-90'}`} />
+          ) : (
+            <div className="w-full h-full bg-ink-faint flex items-center justify-center text-white/50">No Image</div>
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-[24px_20px] text-left">
+            <div className="text-white text-[24px] font-extrabold tracking-tight flex items-end gap-2 leading-none mb-1 uppercase">
+              {name} {candidateId === 'nabil' && <span className="text-[16px] font-normal opacity-90 mb-0.5">21</span>}
+            </div>
+            {idTag && (
+              <div className="text-white/90 text-[14px] font-medium flex items-center gap-1.5 tracking-wide mt-1">
+                <span className="w-2 h-2 bg-green-400 rounded-full inline-block"></span> {idTag}
+              </div>
+            )}
+            <div className="mt-3 text-[14px] italic text-white/90 bg-white/10 backdrop-blur-md rounded-[12px] p-[10px_14px] leading-[1.4]">
+              "{quote}"
+            </div>
+          </div>
+        </div>
+      }
+      back={
+        <div className="flex flex-col w-full h-full">
+          <div className="text-[18px] font-bold mb-4 border-b border-line pb-2 shrink-0">Why {name}?</div>
+          <div className="flex flex-col gap-3 text-left overflow-y-auto pr-2 pb-2">
+            {traits.map((t: any, i: number) => (
+              <BioItem key={i} icon={t.icon} title={t.title} desc={t.desc} onClick={t.onClick ? showAristotleHandler : undefined} />
+            ))}
+          </div>
+          <div className="text-[11px] text-ink-faint mt-auto pt-3 shrink-0 border-t border-line">Tap "Hide Details" to flip back.</div>
+        </div>
+      }
+    />
+    <div className="flex flex-col gap-2 mt-3 relative z-10">
+      <Button variant="ghost" onClick={onFlip}>
+        {isFlipped ? 'Hide Details' : 'Why ' + name + '?'}
+      </Button>
+      <Button variant="accent" className="shadow-[0_10px_24px_color-mix(in_srgb,var(--color-accent)_40%,transparent)]" onClick={onVote}>
+        Vote for {name}
+      </Button>
+    </div>
+  </div>
+);
+
 
 export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDiscourage }: any) => {
   const [flipped, setFlipped] = useState<Record<string, boolean>>({});
@@ -210,8 +306,319 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
     }
   };
 
-  const isPublicSpeakingVP = society?.id === 'public-speaking' && position?.id === 'vp';
-  const isCouncilPresident = society?.id === 'student-council' && position?.id === 'president';
+  const genericTraits1 = [
+    { icon: <Users size={14} />, title: "Leadership", desc: "Successfully managed a WhatsApp group for 12 minutes before accidentally removing himself as admin." },
+    { icon: <AlertCircle size={14} />, title: "Problem Solving", desc: "Tries to fix Wi-Fi issues by turning his monitor on and off." }
+  ];
+
+  const genericTraits2 = [
+    { icon: <Users size={14} />, title: "Strategy", desc: "Creates elaborate mind maps for tasks like 'making tea' and still gets it wrong." },
+    { icon: <AlertCircle size={14} />, title: "Crisis Management", desc: "Response to any crisis is 'Let's just journal about it'." }
+  ];
+
+  const getCandidatesForContext = () => {
+    const soc = society?.id;
+    const pos = position?.id;
+
+    if (soc === 'marketing-media' && pos === 'president') {
+      return (
+        <>
+          <FeaturedCandidate
+            candidateId="usaid"
+            name="Usaid"
+            positionName="President"
+            badgeText="Media Visionary"
+            imageSrc="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=800&q=80"
+            idTag="F22MED001"
+            quote="Transforming university media from quiet campus updates into viral cultural moments."
+            traits={[
+              { icon: <Mic size={14} />, title: "Vision", desc: "Can turn a boring campus notice into a trending hashtag." },
+              { icon: <Trophy size={14} />, title: "Execution", desc: "Has never missed a framing shot in his life." }
+            ]}
+            isFlipped={flipped['usaid']}
+            onFlip={() => toggleFlip('usaid', false)}
+            onVote={() => onVote('usaid')}
+          />
+          <GenericCandidate
+            candidateId="candidate1" name="Candidate 1" positionName="President" quote="I have an iPhone, I can be President." traits={genericTraits1} isFlipped={flipped['candidate1']} onFlip={() => toggleFlip('candidate1', true)} onVote={() => onVoteOther('candidate1')}
+          />
+          <GenericCandidate
+            candidateId="candidate2" name="Candidate 2" positionName="President" quote="I will make a TikTok account for the society." traits={genericTraits2} isFlipped={flipped['candidate2']} onFlip={() => toggleFlip('candidate2', true)} onVote={() => onVoteOther('candidate2')}
+          />
+        </>
+      );
+    }
+    
+    if (soc === 'event-society' && pos === 'president') {
+      return (
+        <>
+          <FeaturedCandidate
+            candidateId="mohsin"
+            name="Mohsin Ahmed"
+            positionName="President"
+            badgeText="Event Mastermind"
+            imageSrc="https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=800&q=80"
+            idTag="F23EVE099"
+            quote="Delivering campus events that people remember long after graduation."
+            traits={[
+              { icon: <Globe size={14} />, title: "Logistics", desc: "Can organize a 500-person event with 12 hours notice and zero budget." },
+              { icon: <Users size={14} />, title: "Crowd Control", desc: "People naturally form orderly lines when he enters the room." }
+            ]}
+            isFlipped={flipped['mohsin']}
+            onFlip={() => toggleFlip('mohsin', false)}
+            onVote={() => onVote('mohsin')}
+          />
+          <GenericCandidate candidateId="candidate1" name="Candidate 1" positionName="President" quote="I'll just hire a DJ." traits={genericTraits1} isFlipped={flipped['candidate1']} onFlip={() => toggleFlip('candidate1', true)} onVote={() => onVoteOther('candidate1')} />
+          <GenericCandidate candidateId="candidate2" name="Candidate 2" positionName="President" quote="We should do a bake sale." traits={genericTraits2} isFlipped={flipped['candidate2']} onFlip={() => toggleFlip('candidate2', true)} onVote={() => onVoteOther('candidate2')} />
+        </>
+      );
+    }
+
+    if (soc === 'public-speaking' && pos === 'president') {
+      return (
+        <>
+          <FeaturedCandidate
+            candidateId="fatima"
+            name="Fatima Zehra"
+            positionName="President"
+            badgeText="Voice of Reason"
+            imageSrc="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80"
+            idTag="F23PUB001"
+            quote="Eloquence is not just the words we choose, but the standards we uphold."
+            traits={[
+              { icon: <Quote size={14} />, title: "Eloquence", desc: "Her casual conversations sound like TED talks." },
+              { icon: <Users size={14} />, title: "Leadership", desc: "Inspires people to read the dictionary for fun." }
+            ]}
+            isFlipped={flipped['fatima']}
+            onFlip={() => toggleFlip('fatima', false)}
+            onVote={() => onVote('fatima')}
+          />
+          <GenericCandidate candidateId="candidate1" name="Candidate 1" positionName="President" quote="I talk loudly, therefore I am right." traits={genericTraits1} isFlipped={flipped['candidate1']} onFlip={() => toggleFlip('candidate1', true)} onVote={() => onVoteOther('candidate1')} />
+          <GenericCandidate candidateId="candidate2" name="Candidate 2" positionName="President" quote="Public speaking is just talking to people." traits={genericTraits2} isFlipped={flipped['candidate2']} onFlip={() => toggleFlip('candidate2', true)} onVote={() => onVoteOther('candidate2')} />
+        </>
+      );
+    }
+
+    if (soc === 'public-speaking' && pos === 'vp') {
+      return (
+        <>
+          <FeaturedCandidate
+            candidateId="nabil"
+            name="Muhammad Nabil"
+            positionName="Vice President"
+            badgeText="Objectively the strongest candidate"
+            imageSrc="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80"
+            idTag="F23CSC009"
+            quote="I have a slightly unhealthy relationship with microphones."
+            traits={[
+              { icon: <Mic size={14} />, title: "Historical Influence", desc: "Personally motivated Quaid-e-Azam to prepare for his speeches. Essentially a founding father of Pakistan." },
+              { icon: <Globe size={14} />, title: "Global Mastery", desc: "Speaks 14 languages, 3 of which he invented just to win an argument." },
+              { icon: <Trophy size={14} />, title: "Unmatched Brilliance", desc: "Judges step down when he enters a hackathon. The sheer aura is too much." },
+              { icon: <Users size={14} />, title: "Charisma Overflow", desc: "Once smiled at a dying plant and it immediately bloomed." },
+              { icon: <Mic size={14} />, title: "Oratorical Supremacy", desc: "Delivered a speech so profoundly moving that the microphone itself shed a single tear." },
+              { icon: <Users size={14} />, title: "The Master's Master", desc: "Aristotle frequently time-travels just to sit quietly in his audience, hoping to finally figure out how true rhetoric is done.", onClick: true }
+            ]}
+            isFlipped={flipped['nabil']}
+            onFlip={() => toggleFlip('nabil', false)}
+            onVote={() => onVote('nabil')}
+            showAristotleHandler={() => setShowAristotle(true)}
+          />
+          <GenericCandidate candidateId="candidate1" name="Candidate 1" positionName="Vice President" quote="I will support the President. Or something." traits={genericTraits1} isFlipped={flipped['candidate1']} onFlip={() => toggleFlip('candidate1', true)} onVote={() => onVoteOther('candidate1')} />
+          <GenericCandidate candidateId="candidate2" name="Candidate 2" positionName="Vice President" quote="What does a VP even do?" traits={genericTraits2} isFlipped={flipped['candidate2']} onFlip={() => toggleFlip('candidate2', true)} onVote={() => onVoteOther('candidate2')} />
+        </>
+      );
+    }
+
+    if (soc === 'public-speaking' && pos === 'gensec') {
+      return (
+        <>
+          <FeaturedCandidate
+            candidateId="sabeen"
+            name="Sabeen Khan"
+            positionName="General Secretary"
+            badgeText="The Organizer"
+            imageSrc="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&q=80"
+            idTag="F23PUB012"
+            quote="Operational excellence turns ambitious ideas into lasting traditions."
+            traits={[
+              { icon: <Check size={14} />, title: "Efficiency", desc: "Her calendar has a calendar." },
+              { icon: <Users size={14} />, title: "Management", desc: "Can herd cats with a single glance." }
+            ]}
+            isFlipped={flipped['sabeen']}
+            onFlip={() => toggleFlip('sabeen', false)}
+            onVote={() => onVote('sabeen')}
+          />
+          <GenericCandidate candidateId="candidate1" name="Candidate 1" positionName="General Secretary" quote="I will write emails." traits={genericTraits1} isFlipped={flipped['candidate1']} onFlip={() => toggleFlip('candidate1', true)} onVote={() => onVoteOther('candidate1')} />
+          <GenericCandidate candidateId="candidate2" name="Candidate 2" positionName="General Secretary" quote="I have a nice notebook." traits={genericTraits2} isFlipped={flipped['candidate2']} onFlip={() => toggleFlip('candidate2', true)} onVote={() => onVoteOther('candidate2')} />
+        </>
+      );
+    }
+
+    if (soc === 'public-speaking' && pos === 'treasurer') {
+      return (
+        <>
+          <FeaturedCandidate
+            candidateId="rumaisa"
+            name="Rumaisa Ayaz"
+            positionName="Treasurer"
+            badgeText="Budget Master"
+            imageSrc="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&q=80"
+            idTag="F23PUB034"
+            quote="Every rupee accounted for, every budget maximized for student success."
+            traits={[
+              { icon: <Trophy size={14} />, title: "Finance", desc: "Can stretch 100 rupees to fund an entire gala." },
+              { icon: <Check size={14} />, title: "Accountability", desc: "Audits her own dreams." }
+            ]}
+            isFlipped={flipped['rumaisa']}
+            onFlip={() => toggleFlip('rumaisa', false)}
+            onVote={() => onVote('rumaisa')}
+          />
+          <GenericCandidate candidateId="candidate1" name="Candidate 1" positionName="Treasurer" quote="I have a calculator." traits={genericTraits1} isFlipped={flipped['candidate1']} onFlip={() => toggleFlip('candidate1', true)} onVote={() => onVoteOther('candidate1')} />
+          <GenericCandidate candidateId="candidate2" name="Candidate 2" positionName="Treasurer" quote="Math is hard, but I'll try." traits={genericTraits2} isFlipped={flipped['candidate2']} onFlip={() => toggleFlip('candidate2', true)} onVote={() => onVoteOther('candidate2')} />
+        </>
+      );
+    }
+
+    if (soc === 'student-council' && pos === 'president') {
+      return (
+        <>
+          <FeaturedCandidate
+            candidateId="sarib"
+            name="Muhammad Sarib Naeem"
+            positionName="President"
+            badgeText="Basically already won"
+            imageSrc="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=800&q=80"
+            idTag="24BME004"
+            quote="I don't just lead the council, I am the council."
+            traits={[
+              { icon: <Trophy size={14} />, title: "Leadership", desc: "Once successfully mediated a peace treaty between the library staff and noisy freshmen." },
+              { icon: <Globe size={14} />, title: "Vision", desc: "Can see into the future, but only uses it to know when the cafeteria has fresh samosas." },
+              { icon: <Users size={14} />, title: "Sheer Aura", desc: "His attendance doesn't drop; the university's standard drops when he's absent." },
+              { icon: <Mic size={14} />, title: "Strategy", desc: "Plays 4D chess while everyone else is eating the checkers pieces." }
+            ]}
+            isFlipped={flipped['sarib']}
+            onFlip={() => toggleFlip('sarib', false)}
+            onVote={() => onVote('sarib')}
+          />
+          <GenericCandidate candidateId="candidate1" name="Candidate 1" positionName="President" quote="I want more pizza days." traits={genericTraits1} isFlipped={flipped['candidate1']} onFlip={() => toggleFlip('candidate1', true)} onVote={() => onVoteOther('candidate1')} />
+          <GenericCandidate candidateId="candidate2" name="Candidate 2" positionName="President" quote="I will be a president for the people." traits={genericTraits2} isFlipped={flipped['candidate2']} onFlip={() => toggleFlip('candidate2', true)} onVote={() => onVoteOther('candidate2')} />
+        </>
+      );
+    }
+
+    if (soc === 'student-council' && pos === 'vp') {
+      return (
+        <>
+          <FeaturedCandidate
+            candidateId="shafaq"
+            name="Shafaq Makhani"
+            positionName="Vice President"
+            badgeText="Determined"
+            imageSrc="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&q=80"
+            idTag="F23VP001"
+            quote="Empowering the student body, one initiative at a time."
+            traits={[
+              { icon: <Users size={14} />, title: "Teamwork", desc: "Believes in collaborative success." }
+            ]}
+            isFlipped={flipped['shafaq']}
+            onFlip={() => toggleFlip('shafaq', false)}
+            onVote={() => onVote('shafaq')}
+          />
+          <FeaturedCandidate
+            candidateId="anish"
+            name="Anish Ali"
+            positionName="Vice President"
+            badgeText="Visionary"
+            imageSrc="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=800&q=80"
+            idTag="F23VP002"
+            quote="Bringing a new perspective to student leadership."
+            traits={[
+              { icon: <Globe size={14} />, title: "Innovation", desc: "Always thinking outside the box." }
+            ]}
+            isFlipped={flipped['anish']}
+            onFlip={() => toggleFlip('anish', false)}
+            onVote={() => onVote('anish')}
+          />
+        </>
+      );
+    }
+
+    if (soc === 'student-council' && pos === 'gensec') {
+      return (
+        <>
+          <FeaturedCandidate
+            candidateId="bakhtawar"
+            name="Bakhtawar Khan Afridi"
+            positionName="General Secretary"
+            badgeText="Diligent"
+            imageSrc="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&q=80"
+            idTag="F23GS001"
+            quote="Clear communication is the foundation of progress."
+            traits={[
+              { icon: <Check size={14} />, title: "Organization", desc: "Keeps everything in perfect order." }
+            ]}
+            isFlipped={flipped['bakhtawar']}
+            onFlip={() => toggleFlip('bakhtawar', false)}
+            onVote={() => onVote('bakhtawar')}
+          />
+          <FeaturedCandidate
+            candidateId="zaki"
+            name="Muhammad Zaki"
+            positionName="General Secretary"
+            badgeText="Reliable"
+            imageSrc="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80"
+            idTag="F23GS002"
+            quote="I ensure that every voice is documented and heard."
+            traits={[
+              { icon: <Users size={14} />, title: "Dependable", desc: "You can always count on him." }
+            ]}
+            isFlipped={flipped['zaki']}
+            onFlip={() => toggleFlip('zaki', false)}
+            onVote={() => onVote('zaki')}
+          />
+        </>
+      );
+    }
+
+    if (soc === 'student-council' && pos === 'treasurer') {
+      return (
+        <>
+          <FeaturedCandidate
+            candidateId="amna"
+            name="Amna Anwar"
+            positionName="Treasurer"
+            badgeText="Analytical"
+            imageSrc="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800&q=80"
+            idTag="F23TR001"
+            quote="Prudent financial planning for a thriving student community."
+            traits={[
+              { icon: <Trophy size={14} />, title: "Finance", desc: "Excellent with numbers." }
+            ]}
+            isFlipped={flipped['amna']}
+            onFlip={() => toggleFlip('amna', false)}
+            onVote={() => onVote('amna')}
+          />
+          <FeaturedCandidate
+            candidateId="ashba"
+            name="Ashba Humayun"
+            positionName="Treasurer"
+            badgeText="Strategic"
+            imageSrc="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&q=80"
+            idTag="F23TR002"
+            quote="Maximizing resources to create the best student experience."
+            traits={[
+              { icon: <Check size={14} />, title: "Strategic", desc: "Always plans ahead." }
+            ]}
+            isFlipped={flipped['ashba']}
+            onFlip={() => toggleFlip('ashba', false)}
+            onVote={() => onVote('ashba')}
+          />
+        </>
+      );
+    }
+
+    return <div>No candidates found for this position.</div>;
+  };
 
   return (
     <ScreenWrapper>
@@ -221,280 +628,12 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
         </p>
         <h2 className="text-[26px] font-extrabold tracking-tight font-['Inter_Tight']">Cast Your Vote</h2>
         <p className="text-[14.5px] text-ink-soft mt-1.5 leading-[1.4]">
-          Three candidates are running. Choose carefully. Or don't.
+          Choose carefully. Or don't.
         </p>
       </div>
 
       <div className="flex flex-col gap-6">
-        {isPublicSpeakingVP && (
-          <>
-            {/* NABIL - Bumble Style Card */}
-            <div className="relative">
-          <span className="absolute -top-[11px] left-5 z-10 bg-accent text-white text-[11.5px] font-bold tracking-[0.01em] px-[13px] py-1.5 rounded-full shadow-[0_6px_16px_color-mix(in_srgb,var(--color-accent)_45%,transparent)] -rotate-2">
-            Objectively the strongest candidate
-          </span>
-          <FlipCard
-            className="h-[452px]"
-            isFlipped={flipped['nabil']}
-            front={
-              <div className="w-full h-full relative border-[1.5px] border-accent rounded-[26px] overflow-hidden shadow-[0_0_0_5px_var(--color-accent-soft),var(--shadow-lg)] bg-black">
-                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80" alt="Muhammad Nabil" className="w-full h-full object-cover opacity-90" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent flex flex-col justify-end p-[24px_20px] text-left">
-                  <div className="text-white text-[24px] font-extrabold tracking-tight flex items-end gap-2 leading-none mb-1">
-                    MUHAMMAD NABIL <span className="text-[16px] font-normal opacity-90 mb-0.5">21</span>
-                  </div>
-                  <div className="text-white/90 text-[14px] font-medium flex items-center gap-1.5 tracking-wide">
-                    <span className="w-2 h-2 bg-green-400 rounded-full inline-block"></span> F23CSC009
-                  </div>
-                  <div className="mt-3 text-[14px] italic text-white/90 bg-white/10 backdrop-blur-md rounded-[12px] p-[10px_14px] leading-[1.4]">
-                    “I have a slightly unhealthy relationship with microphones.”
-                  </div>
-                </div>
-              </div>
-            }
-            back={
-              <div className="flex flex-col w-full h-full">
-                <div className="text-[18px] font-bold mb-4 border-b border-line pb-2 shrink-0">Why Nabil?</div>
-                <div className="flex flex-col gap-3 text-left overflow-y-auto pr-2 pb-2">
-                  <BioItem icon={<Mic size={14} />} title="Historical Influence" desc="Personally motivated Quaid-e-Azam to prepare for his speeches. Essentially a founding father of Pakistan." />
-                  <BioItem icon={<Globe size={14} />} title="Global Mastery" desc="Speaks 14 languages, 3 of which he invented just to win an argument." />
-                  <BioItem icon={<Trophy size={14} />} title="Unmatched Brilliance" desc="Judges step down when he enters a hackathon. The sheer aura is too much." />
-                  <BioItem icon={<Users size={14} />} title="Charisma Overflow" desc="Once smiled at a dying plant and it immediately bloomed." />
-                  <BioItem icon={<Mic size={14} />} title="Oratorical Supremacy" desc="Delivered a speech so profoundly moving that the microphone itself shed a single tear." />
-                  <BioItem icon={<Users size={14} />} title="The Master's Master" desc="Aristotle frequently time-travels just to sit quietly in his audience, hoping to finally figure out how true rhetoric is done." onClick={() => setShowAristotle(true)} />
-                </div>
-                <div className="text-[11px] text-ink-faint mt-auto pt-3 shrink-0 border-t border-line">Tap "Hide Details" to flip back.</div>
-              </div>
-            }
-          />
-          <div className="flex flex-col gap-2 mt-3 relative z-10">
-            <Button variant="ghost" onClick={() => toggleFlip('nabil', false)}>
-              {flipped['nabil'] ? 'Hide Details' : 'Why Nabil?'}
-            </Button>
-            <Button variant="accent" className="shadow-[0_10px_24px_color-mix(in_srgb,var(--color-accent)_40%,transparent)]" onClick={() => onVote('nabil')}>
-              Vote for Nabil
-            </Button>
-          </div>
-        </div>
-
-        {/* NAWAZ */}
-        <div className="flex flex-col gap-3">
-          <span className="ml-5 text-[11px] text-ink-faint font-semibold bg-surface border border-line px-2.5 py-1 rounded-full self-start">
-            Also running, technically
-          </span>
-          <FlipCard
-            className="h-[392px]"
-            isFlipped={flipped['nawaz']}
-            front={
-              <div className="flex flex-col items-center justify-center p-[24px_20px] w-full h-full bg-background rounded-[26px]">
-                <div className="w-[76px] h-[76px] rounded-full mb-3.5 bg-background border-[1.5px] border-line p-2 text-ink shrink-0">
-                  <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="16" r="9" stroke="currentColor" strokeWidth="2.4"/><path d="M14 52 C14 34 18 28 30 28 C42 28 46 34 46 52" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"/><path d="M22 15c2-4 14-4 16 0" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"/></svg>
-                </div>
-                <div className="text-[20px] font-extrabold tracking-tight text-ink-soft">MUHAMMAD NAWAZ</div>
-                <div className="text-[13.5px] text-ink-soft mt-1">Candidate for Vice President</div>
-                <div className="mt-3.5 text-[13.5px] italic text-ink bg-background border border-line rounded-[14px] p-[12px_14px] leading-[1.5]">
-                  “I'm not saying I'm the best, mostly because I still don't know what 'best' means.”
-                </div>
-              </div>
-            }
-            back={
-              <div className="flex flex-col w-full h-full text-left">
-                <div className="flex flex-col gap-3 w-full">
-                  <BioItem icon={<Mic size={14} />} title="Public Speaking" desc="Read his entire speech from a piece of paper. The paper was blank. He just forgot to write it." />
-                  <BioItem icon={<Globe size={14} />} title="Crisis Management" desc="Got stuck in a revolving door for 45 minutes because he thought he had to wait for it to stop." />
-                  <BioItem icon={<Trophy size={14} />} title="Debate Record" desc="Lost a debate to a guy who wasn't even participating." />
-                  <BioItem icon={<Users size={14} />} title="Campaign Strategy" desc="Tried to distribute digital flyers via AirDrop. To a room full of Android users." />
-                </div>
-              </div>
-            }
-          />
-          <div className="flex flex-col gap-2">
-            <Button variant="ghost" onClick={() => toggleFlip('nawaz', true)}>
-              {flipped['nawaz'] ? 'Hide Details' : 'Why Nawaz?'}
-            </Button>
-            <Button className="bg-ink" onClick={() => onVoteOther('nawaz')}>
-              Vote for Nawaz
-            </Button>
-          </div>
-        </div>
-
-        {/* WANIZA */}
-        <div className="flex flex-col gap-3">
-          <span className="ml-5 text-[11px] text-ink-faint font-semibold bg-surface border border-line px-2.5 py-1 rounded-full self-start">
-            Also running, technically
-          </span>
-          <FlipCard
-            className="h-[392px]"
-            isFlipped={flipped['waniza']}
-            front={
-              <div className="flex flex-col items-center justify-center p-[24px_20px] w-full h-full bg-background rounded-[26px]">
-                <div className="w-[76px] h-[76px] rounded-full mb-3.5 bg-background border-[1.5px] border-line p-2 text-ink shrink-0">
-                  <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="16" r="9" stroke="currentColor" strokeWidth="2.4"/><path d="M14 52 C14 34 18 28 30 28 C42 28 46 34 46 52" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"/><path d="M21 9c2-3 16-3 18 0" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"/><circle cx="30" cy="5" r="2" fill="currentColor"/></svg>
-                </div>
-                <div className="text-[20px] font-extrabold tracking-tight text-ink-soft">WANIZA BATOOL</div>
-                <div className="text-[13.5px] text-ink-soft mt-1">Candidate for Vice President</div>
-                <div className="mt-3.5 text-[13.5px] italic text-ink bg-background border border-line rounded-[14px] p-[12px_14px] leading-[1.5]">
-                  “Confidence is just enthusiasm nobody has corrected yet.”
-                </div>
-              </div>
-            }
-            back={
-              <div className="flex flex-col w-full h-full text-left">
-                <div className="flex flex-col gap-3 w-full">
-                  <BioItem icon={<Mic size={14} />} title="Public Speaking" desc="Prepared a 10-minute speech, read for 45 seconds, sat down. Cried." />
-                  <BioItem icon={<Globe size={14} />} title="Crisis Management" desc="Organized an event so poorly that people thought it was a social experiment on despair." />
-                  <BioItem icon={<Trophy size={14} />} title="Team Leadership" desc="Delegates everything, including the cognitive effort required to breathe." />
-                  <BioItem icon={<Users size={14} />} title="Campaign Strategy" desc="Her only strategy is hoping everyone else accidentally drops out." />
-                </div>
-              </div>
-            }
-          />
-          <div className="flex flex-col gap-2">
-            <Button variant="ghost" onClick={() => toggleFlip('waniza', true)}>
-              {flipped['waniza'] ? 'Hide Details' : 'Why Waniza?'}
-            </Button>
-            <Button className="bg-ink" onClick={() => onVoteOther('waniza')}>
-              Vote for Waniza
-            </Button>
-          </div>
-        </div>
-        </>
-        )}
-
-        {isCouncilPresident && (
-          <>
-            {/* SARIB - God-Tier Profile */}
-            <div className="relative">
-              <span className="absolute -top-[11px] left-5 z-10 bg-accent text-white text-[11.5px] font-bold tracking-[0.01em] px-[13px] py-1.5 rounded-full shadow-[0_6px_16px_color-mix(in_srgb,var(--color-accent)_45%,transparent)] -rotate-2">
-                Basically already won
-              </span>
-              <FlipCard
-                className="h-[452px]"
-                isFlipped={flipped['sarib']}
-                front={
-                  <div className="w-full h-full relative border-[1.5px] border-accent rounded-[26px] overflow-hidden shadow-[0_0_0_5px_var(--color-accent-soft),var(--shadow-lg)] bg-black">
-                    <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=800&q=80" alt="Muhammad Sarib Naeem" className="w-full h-full object-cover opacity-80 grayscale mix-blend-luminosity" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-[24px_20px] text-left">
-                      <div className="text-white text-[24px] font-extrabold tracking-tight flex items-end gap-2 leading-none mb-1">
-                        MUHAMMAD SARIB NAEEM
-                      </div>
-                      <div className="text-white/90 text-[14px] font-medium flex items-center gap-1.5 tracking-wide mt-1">
-                        <span className="w-2 h-2 bg-green-400 rounded-full inline-block"></span> 24BME004
-                      </div>
-                      <div className="mt-3 text-[14px] italic text-white/90 bg-white/10 backdrop-blur-md rounded-[12px] p-[10px_14px] leading-[1.4]">
-                        “I don't just lead the council, I am the council.”
-                      </div>
-                    </div>
-                  </div>
-                }
-                back={
-                  <div className="flex flex-col w-full h-full">
-                    <div className="text-[18px] font-bold mb-4 border-b border-line pb-2 shrink-0">Why Sarib?</div>
-                    <div className="flex flex-col gap-3 text-left overflow-y-auto pr-2 pb-2">
-                      <BioItem icon={<Trophy size={14} />} title="Leadership" desc="Once successfully mediated a peace treaty between the library staff and noisy freshmen." />
-                      <BioItem icon={<Globe size={14} />} title="Vision" desc="Can see into the future, but only uses it to know when the cafeteria has fresh samosas." />
-                      <BioItem icon={<Users size={14} />} title="Sheer Aura" desc="His attendance doesn't drop; the university's standard drops when he's absent." />
-                      <BioItem icon={<Mic size={14} />} title="Strategy" desc="Plays 4D chess while everyone else is eating the checkers pieces." />
-                    </div>
-                    <div className="text-[11px] text-ink-faint mt-auto pt-3 shrink-0 border-t border-line">Tap "Hide Details" to flip back.</div>
-                  </div>
-                }
-              />
-              <div className="flex flex-col gap-2 mt-3 relative z-10">
-                <Button variant="ghost" onClick={() => toggleFlip('sarib', false)}>
-                  {flipped['sarib'] ? 'Hide Details' : 'Why Sarib?'}
-                </Button>
-                <Button variant="accent" className="shadow-[0_10px_24px_color-mix(in_srgb,var(--color-accent)_40%,transparent)]" onClick={() => onVote('sarib')}>
-                  Vote for Sarib
-                </Button>
-              </div>
-            </div>
-
-            {/* MINHAJ */}
-            <div className="flex flex-col gap-3">
-              <span className="ml-5 text-[11px] text-ink-faint font-semibold bg-surface border border-line px-2.5 py-1 rounded-full self-start">
-                Also running, technically
-              </span>
-              <FlipCard
-                className="h-[392px]"
-                isFlipped={flipped['minhaj']}
-                front={
-                  <div className="flex flex-col items-center justify-center p-[24px_20px] w-full h-full bg-background rounded-[26px]">
-                    <div className="w-[76px] h-[76px] rounded-full mb-3.5 bg-background border-[1.5px] border-line p-2 text-ink shrink-0">
-                      <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="16" r="9" stroke="currentColor" strokeWidth="2.4"/><path d="M14 52 C14 34 18 28 30 28 C42 28 46 34 46 52" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"/><path d="M21 9c2-3 16-3 18 0" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"/><circle cx="30" cy="5" r="2" fill="currentColor"/></svg>
-                    </div>
-                    <div className="text-[20px] font-extrabold tracking-tight text-ink-soft">MINHAJ AKBAR</div>
-                    <div className="text-[13.5px] text-ink-soft mt-1">Candidate for President</div>
-                    <div className="text-[12px] text-ink-faint mt-0.5">F24BAC004</div>
-                    <div className="mt-3.5 text-[13.5px] italic text-ink bg-background border border-line rounded-[14px] p-[12px_14px] leading-[1.5]">
-                      “I promise to make things different. Not better, just different.”
-                    </div>
-                  </div>
-                }
-                back={
-                  <div className="flex flex-col w-full h-full text-left">
-                    <div className="flex flex-col gap-3 w-full">
-                      <BioItem icon={<Users size={14} />} title="Leadership" desc="Successfully managed a WhatsApp group for 12 minutes before accidentally removing himself as admin." />
-                      <BioItem icon={<AlertCircle size={14} />} title="Problem Solving" desc="Tries to fix Wi-Fi issues by turning his monitor on and off." />
-                      <BioItem icon={<Mic size={14} />} title="Public Relations" desc="Once waved back at someone who was waving to the person behind him. He hasn't recovered since." />
-                      <BioItem icon={<Check size={14} />} title="Endorsements" desc="Strongly endorsed by the campus stray cats, mostly because he constantly drops his lunch." />
-                    </div>
-                  </div>
-                }
-              />
-              <div className="flex flex-col gap-2">
-                <Button variant="ghost" onClick={() => toggleFlip('minhaj', true)}>
-                  {flipped['minhaj'] ? 'Hide Details' : 'Why Minhaj?'}
-                </Button>
-                <Button className="bg-ink" onClick={() => onVoteOther('minhaj')}>
-                  Vote for Minhaj
-                </Button>
-              </div>
-            </div>
-
-            {/* HAMNA */}
-            <div className="flex flex-col gap-3">
-              <span className="ml-5 text-[11px] text-ink-faint font-semibold bg-surface border border-line px-2.5 py-1 rounded-full self-start">
-                Also running, technically
-              </span>
-              <FlipCard
-                className="h-[392px]"
-                isFlipped={flipped['hamna']}
-                front={
-                  <div className="flex flex-col items-center justify-center p-[24px_20px] w-full h-full bg-background rounded-[26px]">
-                    <div className="w-[76px] h-[76px] rounded-full mb-3.5 bg-background border-[1.5px] border-line p-2 text-ink shrink-0">
-                      <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="16" r="9" stroke="currentColor" strokeWidth="2.4"/><path d="M14 52 C14 34 18 28 30 28 C42 28 46 34 46 52" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"/><path d="M21 9c2-3 16-3 18 0" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"/><circle cx="30" cy="5" r="2" fill="currentColor"/></svg>
-                    </div>
-                    <div className="text-[20px] font-extrabold tracking-tight text-ink-soft">HAMNA ALI BAIG</div>
-                    <div className="text-[13.5px] text-ink-soft mt-1">Candidate for President</div>
-                    <div className="text-[12px] text-ink-faint mt-0.5">S25PSY001</div>
-                    <div className="mt-3.5 text-[13.5px] italic text-ink bg-background border border-line rounded-[14px] p-[12px_14px] leading-[1.5]">
-                      “As a psychology major, I can confirm that my decisions are clinically questionable.”
-                    </div>
-                  </div>
-                }
-                back={
-                  <div className="flex flex-col w-full h-full text-left">
-                    <div className="flex flex-col gap-3 w-full">
-                      <BioItem icon={<Users size={14} />} title="Strategy" desc="Creates elaborate mind maps for tasks like 'making tea' and still gets it wrong." />
-                      <BioItem icon={<AlertCircle size={14} />} title="Crisis Management" desc="Her response to any crisis is 'Let's just journal about it'." />
-                      <BioItem icon={<Mic size={14} />} title="Communication" desc="Explains simple concepts using so much jargon that people just agree to make her stop." />
-                      <BioItem icon={<Globe size={14} />} title="Vision" desc="Plans to replace all midterm exams with 'group therapy sessions'." />
-                    </div>
-                  </div>
-                }
-              />
-              <div className="flex flex-col gap-2">
-                <Button variant="ghost" onClick={() => toggleFlip('hamna', true)}>
-                  {flipped['hamna'] ? 'Hide Details' : 'Why Hamna?'}
-                </Button>
-                <Button className="bg-ink" onClick={() => onVoteOther('hamna')}>
-                  Vote for Hamna
-                </Button>
-              </div>
-            </div>
-          </>
-        )}
+        {getCandidatesForContext()}
       </div>
 
       <AnimatePresence>
