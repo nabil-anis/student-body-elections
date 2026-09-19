@@ -95,8 +95,102 @@ export const CONFIG = {
   ],
 
   celebrateLines: [
-    "Muhammad Nabil now has one (1) more vote than he had thirty seconds ago. Historic.",
-    "Somewhere, a microphone just got a little more nervous.",
+    "Your democratic duty has been fulfilled.",
+    "A statistically insignificant but emotionally validating choice.",
     "This vote has been etched into the practice ballot forever. Or until you refresh the page."
   ],
+
+  candidateCelebrateLines: {
+    usaid: [
+      "The media landscape is already bracing for impact.",
+      "Your vote just went viral.",
+      "Usaid’s lens is now focused on the presidency.",
+      "Campus updates will never be quiet again.",
+      "You voted. The aesthetics instantly improved."
+    ],
+    mohsin: [
+      "The party just got officially sanctioned.",
+      "Mohsin is already planning the victory gala.",
+      "Logistics handled. Vibe secured.",
+      "This vote will be remembered long after graduation.",
+      "Zero budget, infinite hype. That's a vote for Mohsin."
+    ],
+    fatima: [
+      "Standards upheld. Eloquence delivered.",
+      "The podium has found its rightful master.",
+      "A very articulate and well-reasoned vote.",
+      "Fatima's victory speech is already being drafted.",
+      "You just raised the intellectual bar of the entire society."
+    ],
+    nabil: [
+      "Muhammad Nabil now has one (1) more vote than he had thirty seconds ago. Historic.",
+      "Somewhere, a microphone just got a little more nervous.",
+      "Aristotle sheds a single tear of joy.",
+      "The oratorical supremacy continues.",
+      "Quaid-e-Azam would be proud."
+    ],
+    sabeen: [
+      "Your vote was instantly categorized and color-coded.",
+      "Operational excellence has been achieved.",
+      "Sabeen has already added this victory to her calendar.",
+      "The society is officially in order.",
+      "Ambitious ideas are now lasting traditions."
+    ],
+    rumaisa: [
+      "Every rupee of this vote has been accounted for.",
+      "The budget for success just doubled.",
+      "Rumaisa audited this vote and found it flawless.",
+      "Financial prudence wins the day.",
+      "You just maximized the student experience."
+    ],
+    sarib: [
+      "He is the council. And you just agreed.",
+      "Aura levels are off the charts right now.",
+      "Sarib knew you were going to do that.",
+      "The 4D chess board is coming together perfectly.",
+      "Basically, he had already won. You just made it official."
+    ],
+    shafaq: [
+      "Empowerment initiated.",
+      "Shafaq is ready to launch the next initiative.",
+      "A highly determined and excellent choice.",
+      "Collaboration wins again.",
+      "The student body just got a lot stronger."
+    ],
+    anish: [
+      "Visionary leadership secured.",
+      "A new perspective has been unlocked.",
+      "Anish is thinking outside the box, and inside the ballot.",
+      "The future is looking innovative.",
+      "A fresh take on student leadership is incoming."
+    ],
+    bakhtawar: [
+      "Your vote has been meticulously documented.",
+      "Diligent progress is on the horizon.",
+      "Clear communication wins the day.",
+      "Everything is in perfect order now.",
+      "Bakhtawar has filed this victory under 'Success'."
+    ],
+    zaki: [
+      "A highly reliable choice.",
+      "Your voice has been documented and heard.",
+      "Zaki is on the job. Rest easy.",
+      "Dependability is the name of the game.",
+      "The council’s operations are in good hands."
+    ],
+    amna: [
+      "Analytical brilliance takes the lead.",
+      "The community is officially thriving.",
+      "A very prudent and calculated vote.",
+      "The numbers are looking great for Amna.",
+      "Financial planning just peaked."
+    ],
+    ashba: [
+      "Maximum resources, maximum experience.",
+      "A highly strategic play.",
+      "Ashba has already planned the next three semesters.",
+      "Your vote is a long-term investment.",
+      "Strategic victory unlocked."
+    ]
+  } as Record<string, string[]>
 };
