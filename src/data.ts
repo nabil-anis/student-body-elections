@@ -54,8 +54,10 @@ export const CONFIG = {
     "marketing-media": [
       { id: "president", name: "President", available: true },
     ] as Position[],
-    "event-society": [
+        "event-society": [
       { id: "president", name: "President", available: true },
+      { id: "vp", name: "Vice President", available: true },
+      { id: "gensec", name: "General Secretary", available: true },
     ] as Position[]
   },
 
@@ -73,6 +75,11 @@ export const CONFIG = {
   ],
 
   candidates: {
+    maryam: { name: "Maryam Batook", discourage: false },
+    waqar: { name: "Waqar Soomro", discourage: false },
+    minhaj: { name: "Minhaj Akbar", discourage: false },
+    hamna: { name: "Hamna Ali", discourage: false },
+    abdul: { name: "Abdul Rehman", discourage: false },
     nabil:  { name: "Nabil", discourage: false },
     sarib: { name: "Sarib", discourage: false },
     usaid: { name: "Usaid", discourage: false },

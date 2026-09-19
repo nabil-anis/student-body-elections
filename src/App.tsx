@@ -131,7 +131,7 @@ export default function App() {
     }, 1100);
   };
 
-  const femaleCandidates = ['amna', 'fatima', 'sabeen', 'shafaq', 'bakhtawar', 'rumaisa', 'ashba'];
+  const femaleCandidates = ['amna', 'fatima', 'sabeen', 'shafaq', 'bakhtawar', 'rumaisa', 'ashba', 'maryam', 'hamna'];
 
   const handleVoteSuccess = (candidateId: string) => {
     if (selectedSociety && selectedPosition) {
