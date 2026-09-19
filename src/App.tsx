@@ -117,10 +117,19 @@ export default function App() {
     }, 1100);
   };
 
+  const femaleCandidates = ['amna', 'fatima', 'sabeen', 'shafaq', 'bakhtawar', 'rumaisa', 'ashba'];
+
   const handleVoteSuccess = (candidateId: string) => {
     const lines = CONFIG.candidateCelebrateLines[candidateId] || CONFIG.celebrateLines;
     setCelebrateSubtext(lines[Math.floor(Math.random() * lines.length)]);
-    const audio = new Audio('./assets/violin.mpeg');
+
+    const isCandidateFemale = femaleCandidates.includes(candidateId);
+    const isVoterBoy = theme === 'boy';
+    const isVoterGirl = theme === 'girl';
+    const sameGender = (isVoterBoy && !isCandidateFemale) || (isVoterGirl && isCandidateFemale);
+
+    const audioFile = sameGender ? './assets/gay.mpeg' : './assets/violin.mpeg';
+    const audio = new Audio(audioFile);
     audio.play().catch(() => {});
     navigate('celebrate');
   };
