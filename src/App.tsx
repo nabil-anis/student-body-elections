@@ -118,9 +118,10 @@ export default function App() {
     }, 1100);
   };
 
-  const handleVoteSuccess = () => {
-    setCelebrateSubtext(CONFIG.celebrateLines[Math.floor(Math.random() * CONFIG.celebrateLines.length)]);
-    const audio = new Audio('./assets/celebrate.mp3');
+  const handleVoteSuccess = (candidateId: string) => {
+    const lines = CONFIG.candidateCelebrateLines[candidateId] || CONFIG.celebrateLines;
+    setCelebrateSubtext(lines[Math.floor(Math.random() * lines.length)]);
+    const audio = new Audio('./assets/violin.mpeg');
     audio.play().catch(() => {});
     navigate('celebrate');
   };
