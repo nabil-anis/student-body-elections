@@ -313,7 +313,7 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
     { icon: <AlertCircle size={14} />, title: "Crisis Management", desc: "Response to any crisis is 'Let's just journal about it'." }
   ];
 
-    const getCandidatesForContext = () => {
+      const getCandidatesForContext = () => {
     const soc = society?.id;
     const pos = position?.id;
 
@@ -341,18 +341,18 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             candidateId="abdul"
             name="Abdul Rehman"
             positionName="President"
-            badgeText="Media Maestro"
+            badgeText="WILD CARD"
             imageSrc="./assets/abdul rehman.jpeg"
-            quote="Content isn't king. I am the king of content."
+            quote="I didn't even know I was running until yesterday. Let's get this bread."
             traits={[
-              { icon: <Globe size={14} />, title: "Reach", desc: "His Instagram stories get more views than the Super Bowl." },
-              { icon: <Users size={14} />, title: "Engagement", desc: "Can make a post about watching paint dry go viral." },
-              { icon: <Trophy size={14} />, title: "The PR Legend", desc: "Mark Zuckerberg wishes he had his algorithm.", onClick: true }
+              { icon: <Globe size={14} />, title: "Aura +10000", desc: "Entered the election as a side quest, immediately became the main character." },
+              { icon: <Users size={14} />, title: "Algorithm Manipulator", desc: "His TikTok drafts are classified by the CIA. Pure brainrot genius." },
+              { icon: <Trophy size={14} />, title: "The Anomaly", desc: "Mark Zuckerberg wishes he had his organic reach.", onClick: true }
             ]}
             isFlipped={flipped['abdul']}
             onFlip={() => toggleFlip('abdul', false)}
             onVote={() => onVote('abdul')}
-            showAristotleHandler={() => setEasterEgg({ quote: "I created Facebook to connect people, but Abdul Rehman connects them better. I'm taking notes.", author: "Mark Zuckerberg", year: "2026" })}
+            showAristotleHandler={() => setEasterEgg({ quote: "I studied unpredictability for years, but Abdul Rehman entering a race at the 11th hour and stealing all the aura? Absolute cinema.", author: "The Joker", year: "2008" })}
           />
           <GenericCandidate candidateId="candidate1" name="Candidate 1" positionName="President" quote="I will do my best, probably." traits={genericTraits1} isFlipped={flipped['candidate1']} onFlip={() => toggleFlip('candidate1', true)} onVote={() => onVoteOther('candidate1')} />
           <GenericCandidate candidateId="candidate2" name="Candidate 2" positionName="President" quote="I have no idea what I'm doing." traits={genericTraits2} isFlipped={flipped['candidate2']} onFlip={() => toggleFlip('candidate2', true)} onVote={() => onVoteOther('candidate2')} />
@@ -367,18 +367,18 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             candidateId="mohsin"
             name="Mohsin Ahmed"
             positionName="President"
-            badgeText="Event Mastermind"
+            badgeText="Vibe Checker"
             imageSrc="./assets/mohsin.jpeg"
-            quote="Delivering campus events that people remember long after graduation."
+            quote="Bro, trust me, the venue is sorted. (It is definitely not sorted)."
             traits={[
-              { icon: <Globe size={14} />, title: "Logistics", desc: "Can organize a 500-person event with 12 hours notice and zero budget." },
-              { icon: <Users size={14} />, title: "Crowd Control", desc: "People naturally form orderly lines when he enters the room." },
-              { icon: <Globe size={14} />, title: "The Ultimate Host", desc: "Gatsby threw parties hoping Mohsin would show up.", onClick: true }
+              { icon: <Globe size={14} />, title: "Clutch God", desc: "Can organize a Qawwali night during a monsoon flood on Tariq Road." },
+              { icon: <Users size={14} />, title: "Vibe Checker", desc: "Will personally escort you out if your fit doesn't pass the vibe check." },
+              { icon: <Trophy size={14} />, title: "The Connect", desc: "Fyre Festival organizers beg him for logistics advice.", onClick: true }
             ]}
             isFlipped={flipped['mohsin']}
             onFlip={() => toggleFlip('mohsin', false)}
             onVote={() => onVote('mohsin')}
-            showAristotleHandler={() => setEasterEgg({ quote: "Old sport, I thought I knew how to throw a party, until Mohsin showed me the budget breakdown.", author: "Jay Gatsby", year: "1925" })}
+            showAristotleHandler={() => setEasterEgg({ quote: "I used to think my festival was a logistical nightmare until I saw Mohsin plan a 500-person rave on a Karachi rooftop with zero budget. He is Him.", author: "Fyre Festival Organizer", year: "2017" })}
           />
           <GenericCandidate candidateId="candidate1" name="Candidate 1" positionName="President" quote="I will do my best, probably." traits={genericTraits1} isFlipped={flipped['candidate1']} onFlip={() => toggleFlip('candidate1', true)} onVote={() => onVoteOther('candidate1')} />
           <GenericCandidate candidateId="candidate2" name="Candidate 2" positionName="President" quote="I have no idea what I'm doing." traits={genericTraits2} isFlipped={flipped['candidate2']} onFlip={() => toggleFlip('candidate2', true)} onVote={() => onVoteOther('candidate2')} />
@@ -393,18 +393,18 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             candidateId="waqar"
             name="Waqar Soomro"
             positionName="Vice President"
-            badgeText="The Executor"
+            badgeText="The Enforcer"
             imageSrc="./assets/waqar soomro.jpeg"
-            quote="Ideas are cheap. Execution is everything."
+            quote="We are locking in. Stop yapping and start working."
             traits={[
-              { icon: <Check size={14} />, title: "Discipline", desc: "His to-do list completes itself out of fear." },
-              { icon: <Users size={14} />, title: "Delegation", desc: "Can convince you that doing his work is a privilege." },
-              { icon: <Check size={14} />, title: "The Taskmaster", desc: "Gordon Ramsay thinks he's too strict.", onClick: true }
+              { icon: <Check size={14} />, title: "Locked In", desc: "When he puts his AirPods on noise cancellation, the whole campus goes quiet." },
+              { icon: <Users size={14} />, title: "No Yapping", desc: "Will literally cut your mic if you take more than 2 minutes in a meeting." },
+              { icon: <Trophy size={14} />, title: "The Final Boss", desc: "Shoaib Akhtar thinks his death stare is too aggressive.", onClick: true }
             ]}
             isFlipped={flipped['waqar']}
             onFlip={() => toggleFlip('waqar', false)}
             onVote={() => onVote('waqar')}
-            showAristotleHandler={() => setEasterEgg({ quote: "I thought I was intense in the kitchen, but Waqar organizing a bake sale is truly terrifying.", author: "Gordon Ramsay", year: "2026" })}
+            showAristotleHandler={() => setEasterEgg({ quote: "I bowled at 161 km/h, but Waqar's death stare when the biryani runs out at an event is way faster.", author: "Shoaib Akhtar", year: "2003" })}
           />
           <GenericCandidate candidateId="candidate1" name="Candidate 1" positionName="Vice President" quote="I will do my best, probably." traits={genericTraits1} isFlipped={flipped['candidate1']} onFlip={() => toggleFlip('candidate1', true)} onVote={() => onVoteOther('candidate1')} />
           <GenericCandidate candidateId="candidate2" name="Candidate 2" positionName="Vice President" quote="I have no idea what I'm doing." traits={genericTraits2} isFlipped={flipped['candidate2']} onFlip={() => toggleFlip('candidate2', true)} onVote={() => onVoteOther('candidate2')} />
@@ -430,7 +430,7 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             isFlipped={flipped['maryam']}
             onFlip={() => toggleFlip('maryam', false)}
             onVote={() => onVote('maryam')}
-            showAristotleHandler={() => setEasterEgg({ quote: "I observe the world, but Maryam Batook organizes it. Her spreadsheets are elementary, yet brilliant.", author: "Sherlock Holmes", year: "1892" })}
+            showAristotleHandler={() => setEasterEgg({ quote: "I observe the world, but Maryam Batook organizes it. Her Notion workspace is elementary, yet brilliant.", author: "Sherlock Holmes", year: "1892" })}
           />
           <GenericCandidate candidateId="candidate1" name="Candidate 1" positionName="General Secretary" quote="I will do my best, probably." traits={genericTraits1} isFlipped={flipped['candidate1']} onFlip={() => toggleFlip('candidate1', true)} onVote={() => onVoteOther('candidate1')} />
           <GenericCandidate candidateId="candidate2" name="Candidate 2" positionName="General Secretary" quote="I have no idea what I'm doing." traits={genericTraits2} isFlipped={flipped['candidate2']} onFlip={() => toggleFlip('candidate2', true)} onVote={() => onVoteOther('candidate2')} />
@@ -445,18 +445,18 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             candidateId="fatima"
             name="Fatima Zehra"
             positionName="President"
-            badgeText="The Voice"
+            badgeText="Main Character"
             imageSrc="./assets/Fatima.jpeg"
-            quote="Speaking isn't just an action; it's an absolute art form."
+            quote="I'm not arguing, I'm just explaining why I'm objectively correct."
             traits={[
-              { icon: <Mic size={14} />, title: "Eloquence", desc: "Can read a grocery list and bring the audience to tears." },
-              { icon: <Globe size={14} />, title: "Command", desc: "Microphones automatically turn on when she approaches." },
-              { icon: <Mic size={14} />, title: "The Silencer", desc: "Winston Churchill copied her pauses.", onClick: true }
+              { icon: <Globe size={14} />, title: "Main Character Energy", desc: "The background music literally changes when she walks in." },
+              { icon: <Users size={14} />, title: "Flawless Rizz", desc: "Can convince a DHA burger to eat a bun kabab from Burns Road." },
+              { icon: <Mic size={14} />, title: "The Debater", desc: "Sun Tzu read her debate notes and quit writing.", onClick: true }
             ]}
             isFlipped={flipped['fatima']}
             onFlip={() => toggleFlip('fatima', false)}
             onVote={() => onVote('fatima')}
-            showAristotleHandler={() => setEasterEgg({ quote: "We shall fight on the beaches... but only after we consult Fatima Zehra on the speech draft.", author: "Winston Churchill", year: "1940" })}
+            showAristotleHandler={() => setEasterEgg({ quote: "I wrote The Art of War, but engaging in a debate with Fatima is a battle you have already lost before opening your mouth.", author: "Sun Tzu", year: "5th Century BC" })}
           />
           <GenericCandidate candidateId="candidate1" name="Candidate 1" positionName="President" quote="I will do my best, probably." traits={genericTraits1} isFlipped={flipped['candidate1']} onFlip={() => toggleFlip('candidate1', true)} onVote={() => onVoteOther('candidate1')} />
           <GenericCandidate candidateId="candidate2" name="Candidate 2" positionName="President" quote="I have no idea what I'm doing." traits={genericTraits2} isFlipped={flipped['candidate2']} onFlip={() => toggleFlip('candidate2', true)} onVote={() => onVoteOther('candidate2')} />
@@ -500,18 +500,18 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             candidateId="sabeen"
             name="Sabeen Khan"
             positionName="General Secretary"
-            badgeText="The Organizer"
+            badgeText="Type-A Menace"
             imageSrc="./assets/Sabeen.jpeg"
-            quote="Operational excellence turns ambitious ideas into lasting traditions."
+            quote="If you're 5 minutes early, you're already 10 minutes late. Be serious."
             traits={[
-              { icon: <Check size={14} />, title: "Hyper-Efficiency", desc: "Her calendar is so optimized it bends spacetime." },
-              { icon: <Users size={14} />, title: "Management", desc: "Can herd cats with a single intimidating glance." },
-              { icon: <Check size={14} />, title: "The Grand Organizer", desc: "Julius Caesar weeps at her efficiency.", onClick: true }
+              { icon: <Globe size={14} />, title: "Time Weaver", desc: "Knows exactly how to beat Shahrah-e-Faisal traffic at 6 PM. A true miracle." },
+              { icon: <Users size={14} />, title: "Group Chat Admin", desc: "Her 'read' receipts induce pure panic in the committee WhatsApp." },
+              { icon: <Check size={14} />, title: "The Optimizer", desc: "Elon Musk stole his Mars colonization schedule from her Notion board.", onClick: true }
             ]}
             isFlipped={flipped['sabeen']}
             onFlip={() => toggleFlip('sabeen', false)}
             onVote={() => onVote('sabeen')}
-            showAristotleHandler={() => setEasterEgg({ quote: "I tried to organize my empire, but Sabeen's Excel sheets were vastly superior. I should have hired her.", author: "Julius Caesar", year: "44 BC" })}
+            showAristotleHandler={() => setEasterEgg({ quote: "I thought I was efficient, but Sabeen's Notion dashboard makes my space colonization plan look like a joke.", author: "Elon Musk", year: "2026" })}
           />
           <GenericCandidate candidateId="candidate1" name="Candidate 1" positionName="General Secretary" quote="I will do my best, probably." traits={genericTraits1} isFlipped={flipped['candidate1']} onFlip={() => toggleFlip('candidate1', true)} onVote={() => onVoteOther('candidate1')} />
           <GenericCandidate candidateId="candidate2" name="Candidate 2" positionName="General Secretary" quote="I have no idea what I'm doing." traits={genericTraits2} isFlipped={flipped['candidate2']} onFlip={() => toggleFlip('candidate2', true)} onVote={() => onVoteOther('candidate2')} />
@@ -614,36 +614,35 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             candidateId="shafaq"
             name="Shafaq Makhani"
             positionName="Vice President"
-            badgeText="The Strategist"
+            badgeText="The Plotter"
             imageSrc="./assets/Shafaq.jpeg"
-            quote="Why be a follower when you can rewrite the rules?"
+            quote="Don't stress it, I know a guy who knows a guy."
             traits={[
-              { icon: <Globe size={14} />, title: "Tactics", desc: "Memorized the entire student handbook just to find loopholes." },
-              { icon: <Check size={14} />, title: "Flawless Execution", desc: "Her backup plans have backup plans." },
-              { icon: <Check size={14} />, title: "The Grandmaster", desc: "Garry Kasparov refuses to play chess with her.", onClick: true }
+              { icon: <Check size={14} />, title: "Plot Armor", desc: "Everything just magically works out for her. It's honestly unfair." },
+              { icon: <Globe size={14} />, title: "Street Smarts", desc: "Knows the exact shortcut through Gulshan to avoid the traffic cops." },
+              { icon: <Trophy size={14} />, title: "The Mastermind", desc: "The Professor took notes from her.", onClick: true }
             ]}
             isFlipped={flipped['shafaq']}
             onFlip={() => toggleFlip('shafaq', false)}
             onVote={() => onVote('shafaq')}
-            showAristotleHandler={() => setEasterEgg({ quote: "I can predict 15 moves ahead, but Shafaq has already planned the post-game press conference.", author: "Garry Kasparov", year: "1997" })}
+            showAristotleHandler={() => setEasterEgg({ quote: "I pulled off the greatest heist in history, but Shafaq finessing the university admin to get a 3-day weekend? That is the real heist.", author: "The Professor (Money Heist)", year: "2021" })}
           />
           <FeaturedCandidate
             candidateId="anish"
             name="Anish Ali"
             positionName="Vice President"
-            badgeText="Visionary"
+            badgeText="Delulu Tech Bro"
             imageSrc="./assets/anish.jpeg"
-            quote="Bringing a new perspective to student leadership."
+            quote="Bro, hear me out. What if we make an AI app for that?"
             traits={[
-              { icon: <Globe size={14} />, title: "Innovation", desc: "Always thinking outside the box. Mostly because he lost the box." },
-              { icon: <Mic size={14} />, title: "Visionary", desc: "His platform is 80% buzzwords, 20% pure genius." },
-              { icon: <Users size={14} />, title: "Persuasion", desc: "Convinced the cafeteria to serve pizza by calling it 'circular open-faced cheese sandwiches'." },
-              { icon: <Globe size={14} />, title: "The Visionary's Visionary", desc: "Steve Jobs wishes he had this guy's foresight.", onClick: true }
+              { icon: <Globe size={14} />, title: "Delulu is the Solulu", desc: "Manifests success by simply refusing to accept reality." },
+              { icon: <Mic size={14} />, title: "Yapper", desc: "Will talk about Web3 until you agree to vote for him just to make it stop." },
+              { icon: <Users size={14} />, title: "The Visionary", desc: "Sam Altman asked him for ChatGPT prompts.", onClick: true }
             ]}
             isFlipped={flipped['anish']}
             onFlip={() => toggleFlip('anish', false)}
             onVote={() => onVote('anish')}
-            showAristotleHandler={() => setEasterEgg({ quote: "I thought I invented innovation. Then Anish showed me his student council platform.", author: "Steve Jobs", year: "2007" })}
+            showAristotleHandler={() => setEasterEgg({ quote: "We trained GPT-4 on billions of parameters, but Anish's ability to yap for 45 minutes without making a single point? Unreplicable.", author: "Sam Altman", year: "2024" })}
           />
           <GenericCandidate candidateId="candidate1" name="Candidate 1" positionName="Vice President" quote="I will do my best, probably." traits={genericTraits1} isFlipped={flipped['candidate1']} onFlip={() => toggleFlip('candidate1', true)} onVote={() => onVoteOther('candidate1')} />
           <GenericCandidate candidateId="candidate2" name="Candidate 2" positionName="Vice President" quote="I have no idea what I'm doing." traits={genericTraits2} isFlipped={flipped['candidate2']} onFlip={() => toggleFlip('candidate2', true)} onVote={() => onVoteOther('candidate2')} />
@@ -658,35 +657,35 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             candidateId="bakhtawar"
             name="Bakhtawar Khan"
             positionName="General Secretary"
-            badgeText="The Anchor"
+            badgeText="The Therapist"
             imageSrc="./assets/bakhtawar.jpeg"
-            quote="The glue that holds the chaos together."
+            quote="Everyone take a deep breath. We are not failing this semester."
             traits={[
-              { icon: <Check size={14} />, title: "Stability", desc: "Earthquakes stop when she tells them to settle down." },
-              { icon: <Users size={14} />, title: "Reliability", desc: "Has literally never been late. Time adjusts to her." },
-              { icon: <Check size={14} />, title: "The Pillar", desc: "Atlas asked her to hold the sky for a minute.", onClick: true }
+              { icon: <Users size={14} />, title: "Therapist Override", desc: "Has talked 4 different people out of dropping out on a random Tuesday." },
+              { icon: <Check size={14} />, title: "Unfazed", desc: "Could watch a meteor hit Karachi and just say 'it is what it is'." },
+              { icon: <Trophy size={14} />, title: "The Anchor", desc: "Maula Jatt respects her mental fortitude.", onClick: true }
             ]}
             isFlipped={flipped['bakhtawar']}
             onFlip={() => toggleFlip('bakhtawar', false)}
             onVote={() => onVote('bakhtawar')}
-            showAristotleHandler={() => setEasterEgg({ quote: "Holding up the heavens is tiring. Bakhtawar does it with one hand while writing minutes.", author: "Atlas", year: "Mythology" })}
+            showAristotleHandler={() => setEasterEgg({ quote: "I can lift mountains and fight empires, but Bakhtawar carrying the mental stability of the entire student council on her back? Unmatched strength.", author: "Maula Jatt", year: "2022" })}
           />
           <FeaturedCandidate
             candidateId="zaki"
             name="Zaki"
             positionName="General Secretary"
-            badgeText="The Fixer"
+            badgeText="Jugaad Pro Max"
             imageSrc="./assets/zaki.jpeg"
-            quote="There is no problem too big. Only solutions too small."
+            quote="Give me 10 minutes and a cup of chai, I'll handle it."
             traits={[
-              { icon: <Trophy size={14} />, title: "Problem Solving", desc: "Fixed the Wi-Fi by giving the router a stern look." },
-              { icon: <Globe size={14} />, title: "Connections", desc: "Knows a guy who knows a guy. For everything." },
-              { icon: <Globe size={14} />, title: "The Operator", desc: "James Bond asks him for gadgets.", onClick: true }
+              { icon: <Trophy size={14} />, title: "Jugaad Pro Max", desc: "Can fix the campus Wi-Fi using just a paperclip and good intentions." },
+              { icon: <Globe size={14} />, title: "The Plug", desc: "Needs notes? Needs past papers? Needs a VIP pass? Zaki has it." },
+              { icon: <Check size={14} />, title: "The Operator", desc: "Batman wishes he had his utility belt.", onClick: true }
             ]}
             isFlipped={flipped['zaki']}
             onFlip={() => toggleFlip('zaki', false)}
             onVote={() => onVote('zaki')}
-            showAristotleHandler={() => setEasterEgg({ quote: "I have Q for my equipment, but when things get really messy, I call Zaki.", author: "James Bond", year: "007" })}
+            showAristotleHandler={() => setEasterEgg({ quote: "I used to think my gadgets were cool, until I saw Zaki fix a blown speaker 5 minutes before the event with sheer jugaad.", author: "Batman", year: "Gotham" })}
           />
           <GenericCandidate candidateId="candidate1" name="Candidate 1" positionName="General Secretary" quote="I will do my best, probably." traits={genericTraits1} isFlipped={flipped['candidate1']} onFlip={() => toggleFlip('candidate1', true)} onVote={() => onVoteOther('candidate1')} />
           <GenericCandidate candidateId="candidate2" name="Candidate 2" positionName="General Secretary" quote="I have no idea what I'm doing." traits={genericTraits2} isFlipped={flipped['candidate2']} onFlip={() => toggleFlip('candidate2', true)} onVote={() => onVoteOther('candidate2')} />
@@ -718,18 +717,18 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             candidateId="ashba"
             name="Ashba"
             positionName="Treasurer"
-            badgeText="The Strategist"
+            badgeText="The Hustler"
             imageSrc="./assets/ashba.jpeg"
-            quote="I don't spend money. I deploy assets."
+            quote="Why buy it when we can finesse a sponsorship?"
             traits={[
-              { icon: <Globe size={14} />, title: "Economics", desc: "Started a shadow economy in the cafeteria using ketchup packets." },
-              { icon: <Users size={14} />, title: "Leverage", desc: "Can negotiate a 90% discount on a vending machine snack." },
-              { icon: <Globe size={14} />, title: "The Tycoon", desc: "Warren Buffett attends her masterclasses.", onClick: true }
+              { icon: <Check size={14} />, title: "Girl Math Expert", desc: "Can justify a 50k event expense by explaining it's basically free." },
+              { icon: <Users size={14} />, title: "Bargain Hunter", desc: "Will argue in Zainab Market until the shopkeeper pays HER to take the shirt." },
+              { icon: <Trophy size={14} />, title: "The Finesse", desc: "MrBeast asked her how to fund videos.", onClick: true }
             ]}
             isFlipped={flipped['ashba']}
             onFlip={() => toggleFlip('ashba', false)}
             onVote={() => onVote('ashba')}
-            showAristotleHandler={() => setEasterEgg({ quote: "Value investing is simple, but Ashba's ketchup packet arbitrage is next-level finance.", author: "Warren Buffett", year: "2026" })}
+            showAristotleHandler={() => setEasterEgg({ quote: "I give away millions of dollars for views, but Ashba finessing a free venue by promising them 'exposure' is the greatest trade deal in history.", author: "MrBeast", year: "2026" })}
           />
           <GenericCandidate candidateId="candidate1" name="Candidate 1" positionName="Treasurer" quote="I will do my best, probably." traits={genericTraits1} isFlipped={flipped['candidate1']} onFlip={() => toggleFlip('candidate1', true)} onVote={() => onVoteOther('candidate1')} />
           <GenericCandidate candidateId="candidate2" name="Candidate 2" positionName="Treasurer" quote="I have no idea what I'm doing." traits={genericTraits2} isFlipped={flipped['candidate2']} onFlip={() => toggleFlip('candidate2', true)} onVote={() => onVoteOther('candidate2')} />
