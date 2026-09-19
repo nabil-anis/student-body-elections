@@ -112,7 +112,7 @@ export default function App() {
     navigate('processing');
     setTimeout(() => {
       setWastedContent(CONFIG.wastedSequence[0]);
-      const audio = new Audio('/assets/gay.mpeg');
+      const audio = new Audio('./assets/gay.mpeg');
       audio.play().catch(() => {});
       navigate('wasted', true);
     }, 1100);
@@ -120,7 +120,7 @@ export default function App() {
 
   const handleVoteSuccess = () => {
     setCelebrateSubtext(CONFIG.celebrateLines[Math.floor(Math.random() * CONFIG.celebrateLines.length)]);
-    const audio = new Audio('/assets/celebrate.mp3');
+    const audio = new Audio('./assets/celebrate.mp3');
     audio.play().catch(() => {});
     navigate('celebrate');
   };
