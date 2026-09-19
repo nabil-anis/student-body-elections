@@ -127,7 +127,7 @@ export default function App() {
   };
 
   const handleDiscourage = (id: string, doFlip: () => void) => {
-    const cand = CONFIG.candidates[id as keyof typeof CONFIG.candidates];
+    const cand = (CONFIG.candidates as any)[id];
     setDiscourageMsg(cand.discourageMsg);
     setPendingCandidate(id);
     setFlipCallback(() => doFlip);

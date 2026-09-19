@@ -518,7 +518,9 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             idTag="F23VP001"
             quote="Empowering the student body, one initiative at a time."
             traits={[
-              { icon: <Users size={14} />, title: "Teamwork", desc: "Believes in collaborative success." }
+              { icon: <Users size={14} />, title: "Teamwork", desc: "Believes in collaborative success so strongly she once formed a committee to decide what to have for lunch." },
+              { icon: <Globe size={14} />, title: "Empowerment", desc: "Can make a freshman feel like they own the university with a single pep talk." },
+              { icon: <Check size={14} />, title: "Initiative", desc: "Started three new initiatives while you were reading this sentence." }
             ]}
             isFlipped={flipped['shafaq']}
             onFlip={() => toggleFlip('shafaq', false)}
@@ -533,7 +535,9 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             idTag="F23VP002"
             quote="Bringing a new perspective to student leadership."
             traits={[
-              { icon: <Globe size={14} />, title: "Innovation", desc: "Always thinking outside the box." }
+              { icon: <Globe size={14} />, title: "Innovation", desc: "Always thinking outside the box. Mostly because he lost the box." },
+              { icon: <Mic size={14} />, title: "Visionary", desc: "His platform is 80% buzzwords, 20% pure genius." },
+              { icon: <Users size={14} />, title: "Persuasion", desc: "Convinced the cafeteria to serve pizza by calling it 'circular open-faced cheese sandwiches'." }
             ]}
             isFlipped={flipped['anish']}
             onFlip={() => toggleFlip('anish', false)}
@@ -555,7 +559,9 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             idTag="F23GS001"
             quote="Clear communication is the foundation of progress."
             traits={[
-              { icon: <Check size={14} />, title: "Organization", desc: "Keeps everything in perfect order." }
+              { icon: <Check size={14} />, title: "Organization", desc: "Keeps everything in perfect order. Her notes have their own table of contents." },
+              { icon: <AlertCircle size={14} />, title: "Diligent", desc: "Spotted a typo in a 400-page university manual and wrote a formal letter about it." },
+              { icon: <Users size={14} />, title: "Communication", desc: "Her WhatsApp announcements are basically modern literature." }
             ]}
             isFlipped={flipped['bakhtawar']}
             onFlip={() => toggleFlip('bakhtawar', false)}
@@ -566,11 +572,13 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             name="Muhammad Zaki"
             positionName="General Secretary"
             badgeText="Reliable"
-            imageSrc="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80"
+            imageSrc="./assets/zaki.jpeg"
             idTag="F23GS002"
             quote="I ensure that every voice is documented and heard."
             traits={[
-              { icon: <Users size={14} />, title: "Dependable", desc: "You can always count on him." }
+              { icon: <Users size={14} />, title: "Dependable", desc: "You can always count on him to remember deadlines you completely forgot." },
+              { icon: <Trophy size={14} />, title: "Reliability", desc: "The only person who actually reads the minutes of the meeting." },
+              { icon: <Check size={14} />, title: "Documentation", desc: "Can document a 3-hour chaotic argument into a 2-point actionable summary." }
             ]}
             isFlipped={flipped['zaki']}
             onFlip={() => toggleFlip('zaki', false)}
@@ -592,7 +600,9 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             idTag="F23TR001"
             quote="Prudent financial planning for a thriving student community."
             traits={[
-              { icon: <Trophy size={14} />, title: "Finance", desc: "Excellent with numbers." }
+              { icon: <Trophy size={14} />, title: "Finance", desc: "Excellent with numbers. Can calculate your remaining GPA in her head." },
+              { icon: <AlertCircle size={14} />, title: "Analytical", desc: "Created a pie chart to explain why the council is broke." },
+              { icon: <Check size={14} />, title: "Prudence", desc: "Will fight you over a 50 rupee discrepancy in the budget." }
             ]}
             isFlipped={flipped['amna']}
             onFlip={() => toggleFlip('amna', false)}
@@ -603,11 +613,13 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             name="Ashba Humayun"
             positionName="Treasurer"
             badgeText="Strategic"
-            imageSrc="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&q=80"
+            imageSrc="./assets/ashba.jpeg"
             idTag="F23TR002"
             quote="Maximizing resources to create the best student experience."
             traits={[
-              { icon: <Check size={14} />, title: "Strategic", desc: "Always plans ahead." }
+              { icon: <Check size={14} />, title: "Strategic", desc: "Always plans ahead. She's currently budgeting for the Class of 2030." },
+              { icon: <Globe size={14} />, title: "Resourceful", desc: "Can somehow fund a mega-event by selling three old textbooks." },
+              { icon: <Trophy size={14} />, title: "Maximizer", desc: "Treats the student council treasury like a high-stakes investment portfolio." }
             ]}
             isFlipped={flipped['ashba']}
             onFlip={() => toggleFlip('ashba', false)}
