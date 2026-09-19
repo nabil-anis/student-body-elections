@@ -328,7 +328,7 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             name="Usaid"
             positionName="President"
             badgeText="Media Visionary"
-            imageSrc="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=800&q=80"
+            imageSrc="/assets/usaid.jpeg"
             idTag="F22MED001"
             quote="Transforming university media from quiet campus updates into viral cultural moments."
             traits={[
@@ -357,7 +357,7 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             name="Mohsin Ahmed"
             positionName="President"
             badgeText="Event Mastermind"
-            imageSrc="https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=800&q=80"
+            imageSrc="/assets/mohsin.jpeg"
             idTag="F23EVE099"
             quote="Delivering campus events that people remember long after graduation."
             traits={[
@@ -382,7 +382,7 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             name="Fatima Zehra"
             positionName="President"
             badgeText="Voice of Reason"
-            imageSrc="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80"
+            imageSrc="/assets/Fatima.jpeg"
             idTag="F23PUB001"
             quote="Eloquence is not just the words we choose, but the standards we uphold."
             traits={[
@@ -407,7 +407,7 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             name="Muhammad Nabil"
             positionName="Vice President"
             badgeText="Objectively the strongest candidate"
-            imageSrc="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80"
+            imageSrc="/assets/nabil.jpeg"
             idTag="F23CSC009"
             quote="I have a slightly unhealthy relationship with microphones."
             traits={[
@@ -437,7 +437,7 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             name="Sabeen Khan"
             positionName="General Secretary"
             badgeText="The Organizer"
-            imageSrc="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&q=80"
+            imageSrc="/assets/Sabeen.jpeg"
             idTag="F23PUB012"
             quote="Operational excellence turns ambitious ideas into lasting traditions."
             traits={[
@@ -462,7 +462,7 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             name="Rumaisa Ayaz"
             positionName="Treasurer"
             badgeText="Budget Master"
-            imageSrc="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&q=80"
+            imageSrc="/assets/rumaisa.jpeg"
             idTag="F23PUB034"
             quote="Every rupee accounted for, every budget maximized for student success."
             traits={[
@@ -487,7 +487,7 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             name="Muhammad Sarib Naeem"
             positionName="President"
             badgeText="Basically already won"
-            imageSrc="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=800&q=80"
+            imageSrc="/assets/Sarib.jpeg"
             idTag="24BME004"
             quote="I don't just lead the council, I am the council."
             traits={[
@@ -514,7 +514,7 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             name="Shafaq Makhani"
             positionName="Vice President"
             badgeText="Determined"
-            imageSrc="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&q=80"
+            imageSrc="/assets/Shafaq.jpeg"
             idTag="F23VP001"
             quote="Empowering the student body, one initiative at a time."
             traits={[
@@ -551,7 +551,7 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             name="Bakhtawar Khan Afridi"
             positionName="General Secretary"
             badgeText="Diligent"
-            imageSrc="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&q=80"
+            imageSrc="/assets/bakhtawar.jpeg"
             idTag="F23GS001"
             quote="Clear communication is the foundation of progress."
             traits={[
@@ -588,7 +588,7 @@ export const CandidatesScreen = ({ society, position, onVote, onVoteOther, onDis
             name="Amna Anwar"
             positionName="Treasurer"
             badgeText="Analytical"
-            imageSrc="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800&q=80"
+            imageSrc="/assets/Amna.jpeg"
             idTag="F23TR001"
             quote="Prudent financial planning for a thriving student community."
             traits={[
