@@ -96,8 +96,7 @@ export default function App() {
   const handlePayClick = () => {
     haptic(30);
     setShowLockedModal(false);
-    setPaidModalContent(CONFIG.paidResponses[Math.floor(Math.random() * CONFIG.paidResponses.length)]);
-    setShowPaidModal(true);
+    window.open('https://wa.me/923102152875', '_blank');
   };
 
   const handleVoteOther = (id: string) => {
