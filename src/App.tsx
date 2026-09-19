@@ -120,7 +120,7 @@ export default function App() {
 
   const handleVoteSuccess = () => {
     setCelebrateSubtext(CONFIG.celebrateLines[Math.floor(Math.random() * CONFIG.celebrateLines.length)]);
-    const audio = new Audio('/assets/violin.mpeg');
+    const audio = new Audio('/assets/celebrate.mp3');
     audio.play().catch(() => {});
     navigate('celebrate');
   };
