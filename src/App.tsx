@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TopBar, Modal, Button, Confetti } from './components/Shared';
 import {
   LandingScreen, HubScreen, PositionsScreen, CandidatesScreen,
-  CelebrateScreen, ProcessingScreen, WastedScreen, EasterEggScreen
+  CelebrateScreen, ProcessingScreen, WastedScreen, EasterEggScreen, GeneratingScreen, ElectionCardScreen
 } from './screens';
 import { ScreenId, Theme, Society } from './types';
 import { CONFIG, EXTENDED_GENDERS } from './data';
@@ -13,6 +13,7 @@ export default function App() {
   const [currentScreen, setCurrentScreen] = useState<ScreenId>('landing');
   const [history, setHistory] = useState<ScreenId[]>(['landing']);
   const [theme, setTheme] = useState<Theme>(null);
+  const [votes, setVotes] = useState<Record<string, any>>({});
 
   const [selectedSociety, setSelectedSociety] = useState<Society | null>(null);
   const [selectedPosition, setSelectedPosition] = useState<any | null>(null);
@@ -111,6 +112,19 @@ export default function App() {
     navigate('processing');
     setTimeout(() => {
       setWastedContent(CONFIG.wastedSequence[0]);
+      if (pendingCandidate && selectedSociety && selectedPosition) {
+        setVotes(prev => ({
+          ...prev,
+          [`${selectedSociety.id}_${selectedPosition.id}`]: {
+            candidateId: pendingCandidate,
+            candidateName: (CONFIG.candidates as any)[pendingCandidate]?.name || "Candidate " + pendingCandidate,
+            societyId: selectedSociety.id,
+            societyName: selectedSociety.name,
+            positionId: selectedPosition.id,
+            positionName: selectedPosition.name
+          }
+        }));
+      }
       const audio = new Audio('./assets/gay.mpeg');
       audio.play().catch(() => {});
       navigate('wasted', true);
@@ -120,6 +134,19 @@ export default function App() {
   const femaleCandidates = ['amna', 'fatima', 'sabeen', 'shafaq', 'bakhtawar', 'rumaisa', 'ashba'];
 
   const handleVoteSuccess = (candidateId: string) => {
+    if (selectedSociety && selectedPosition) {
+      setVotes(prev => ({
+        ...prev,
+        [`${selectedSociety.id}_${selectedPosition.id}`]: {
+          candidateId,
+          candidateName: (CONFIG.candidates as any)[candidateId]?.name || "Candidate " + candidateId,
+          societyId: selectedSociety.id,
+          societyName: selectedSociety.name,
+          positionId: selectedPosition.id,
+          positionName: selectedPosition.name
+        }
+      }));
+    }
     const lines = CONFIG.candidateCelebrateLines[candidateId] || CONFIG.celebrateLines;
     setCelebrateSubtext(lines[Math.floor(Math.random() * lines.length)]);
 
@@ -195,10 +222,12 @@ export default function App() {
               onDiscourage={handleDiscourage}
             />
           )}
-          {currentScreen === 'celebrate' && <CelebrateScreen key="celebrate" subtext={celebrateSubtext} onContinue={() => navigate('hub', true)} />}
+          {currentScreen === 'celebrate' && <CelebrateScreen key="celebrate" subtext={celebrateSubtext} onDone={() => navigate('generating' as any, true)} onVoteMore={() => navigate('hub', true)} />}
           {currentScreen === 'processing' && <ProcessingScreen key="processing" />}
-          {currentScreen === 'wasted' && <WastedScreen key="wasted" line1={wastedContent.title} line2={wastedContent.sub} onContinue={() => navigate('hub', true)} />}
+          {currentScreen === 'wasted' && <WastedScreen key="wasted" line1={wastedContent.title} line2={wastedContent.sub} onDone={() => navigate('generating' as any, true)} onVoteMore={() => navigate('hub', true)} />}
           {currentScreen === 'easter' && <EasterEggScreen key="easter" onContinue={() => navigate('hub', true)} />}
+          {currentScreen === ('generating' as any) && <GeneratingScreen key="generating" onComplete={() => navigate('election_card' as any, true)} />}
+          {currentScreen === ('election_card' as any) && <ElectionCardScreen key="election_card" votes={Object.values(votes)} theme={theme} />}
         </AnimatePresence>
       </main>
 

@@ -1,4 +1,4 @@
-export type ScreenId = 'landing' | 'hub' | 'positions' | 'candidates' | 'celebrate' | 'processing' | 'wasted' | 'easter';
+export type ScreenId = 'landing' | 'hub' | 'positions' | 'candidates' | 'celebrate' | 'processing' | 'wasted' | 'easter' | 'generating' | 'election_card';
 export type Theme = 'boy' | 'girl' | 'other' | null;
 
 export interface Society {
